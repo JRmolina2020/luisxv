@@ -31,7 +31,7 @@ $image = $row->image;
         <h4><strong>$<?php echo $pricetot ?></strong></h4>
         <div class="card bg-dark text-white">
           <div class="card-body">
-            <h5 class="card-title">Descripción</h5>
+            <h5 class="card-title">Descripcións</h5>
             <p class="card-text text-justify"><?php echo $description ?></p>
           </div>
         </div>
