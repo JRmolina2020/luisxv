@@ -57,7 +57,9 @@ switch ($_GET["op"]) {
 				"1" => $reg->name,
 				"2" => $reg->surname,
 				"3" => $reg->email,
-				"4" => $reg->role,
+				"11" => ($reg->status == 1) ?
+					'<span  class="label label-success">Administrador</span>' :
+					'<span  class="label label-danger">Asistente</span>',
 				"5" => "<img src='../files/users/" . $reg->image . "' height='50px' width='50px' >",
 				"6" => ($reg->status == 1) ?
 					'<span onclick="statu(' . $reg->id . ',' . $reg->status . ')"class="label label-success">Activo</span>' :
@@ -91,7 +93,7 @@ switch ($_GET["op"]) {
 	case 'exit':
 		session_unset();
 		session_destroy();
-		header("Location: ../index.php");
+		header("Location: ../");
 		break;
 		exit;
 }

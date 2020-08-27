@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>GamersBI | Log in</title>
+  <title>XV | Log in</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="public/css/bootstrap.min.css">
   <link rel="stylesheet" href="public/css/font-awesome.css">
@@ -20,12 +20,11 @@
 <body class="hold-transition">
   <div class="login-box">
     <div class="login-logo">
-      <a href="../../index2.html"><b>LUIS</b>XV</a>
+      <a href=""><b>LUIS</b>XV</a>
     </div>
-    <!-- /.login-logo -->
     <div class="login-box-body">
       <p class="login-box-msg">Valide sus datos para iniciar</p>
-      <form id="frmAcceso" method="post">
+      <form autocomplete="off" id="frmAcceso" method="post">
         <div class="form-group has-feedback">
           <input type="email" name="logina" id="logina" class="form-control" placeholder="Email" focus>
           <span class="fa fa-users form-control-feedback"></span>
@@ -35,13 +34,11 @@
           <span class="fa fa-lock form-control-feedback"></span>
         </div>
         <div class="row">
-          <!-- /.col -->
           <div class="col-xs-6 col-md-4 col-sm-6 col-lg-4">
             <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar
               <i class="fa fa-key"></i>
             </button>
           </div>
-          <!-- /.col -->
         </div>
       </form>
       <br><br>

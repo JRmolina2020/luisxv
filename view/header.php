@@ -15,8 +15,6 @@ if (!isset($_SESSION['email'])) {
   <link rel="stylesheet" href="../public/css/bootstrap.min.css">
   <script src="https://cdn.tiny.cloud/1/t2vzn4hoayxti0mhnnnulr0p5og56jylpoc6sksvpzcso5kq/tinymce/5/tinymce.min.js"
     referrerpolicy="origin"></script>
-
-
   <link rel="stylesheet" href="../public/css/font-awesome.css">
   <link rel="stylesheet" href="../public/css/AdminLTE.min.css">
   <link rel="stylesheet" href="../public/css/_all-skins.min.css">
@@ -29,21 +27,13 @@ if (!isset($_SESSION['email'])) {
   <link rel="stylesheet"
     href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" />
   <link rel="stylesheet" type="text/css" href="../public/css/sweetalert2.min.css">
-  <script src='https://cdn.tiny.cloud/1/t2vzn4hoayxti0mhnnnulr0p5og56jylpoc6sksvpzcso5kq/tinymce/5/tinymce.min.js'
-    referrerpolicy="origin">
-  </script>
-  <script>
-  tinymce.init({
-    selector: '#description'
-  });
-  </script>
 </head>
-</head>
+
 
 <body class="hold-transition skin-red sidebar-mini">
   <div class="wrapper">
     <header class="main-header">
-      <a href="../../index2.html" class="logo">
+      <a href="products" class="logo">
         <span class="logo-mini"><b>L</b>XV</span>
         <img src="../public/images/logo.png" alt="">
       </a>
@@ -73,37 +63,47 @@ if (!isset($_SESSION['email'])) {
           <li class="header">LUISXV</li>
           <?php if ($_SESSION['role'] == "1") { ?>
           <li class="treeview">
-            <a href="users.php">
+            <a href="users">
               <i class="fa fa-home"></i> <span>Usuario</span>
             </a>
           </li>
           <li class="treeview">
-            <a href="category.php">
+            <a href="category">
               <i class="fa fa-home"></i> <span>Categorias</span>
             </a>
           </li>
           <li class="treeview">
-            <a href="products.php">
+            <a href="brands">
+              <i class="fa fa-home"></i> <span>Marcas</span>
+            </a>
+          </li>
+          <li class="treeview">
+            <a href="products">
               <i class="fa fa-home"></i> <span>Productos</span>
             </a>
           </li>
           <?php } ?>
           <?php if ($_SESSION['role'] != "1") { ?>
           <li class="treeview">
-            <a href="category.php">
+            <a href="category">
               <i class="fa fa-home"></i> <span>Categorias</span>
             </a>
           </li>
           <li class="treeview">
-            <a href="products.php">
+            <a href="brands">
+              <i class="fa fa-home"></i> <span>Marcas</span>
+            </a>
+          </li>
+          <li class="treeview">
+            <a href="products">
               <i class="fa fa-home"></i> <span>Productos</span>
             </a>
           </li>
-          < <?php } ?> <li class="treeview">
+          <?php } ?> <li class="treeview">
             <a href="../controller/UsersControllers.php?op=exit">
               <i class="fa fa-times"></i> <span>Salir</span>
             </a>
-            </li>
+          </li>
         </ul>
       </section>
     </aside>

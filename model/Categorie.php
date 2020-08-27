@@ -3,17 +3,20 @@ require "../config/conexion.php";
 class Categorie
 {
 
-  public function store($name, $image)
+  public function store($name, $image, $categorie)
   {
-    $sql = "INSERT INTO categories (name,image,status)
-		VALUES ('$name','$image',1)";
+    $sql = "INSERT INTO categories (name,image,status,categorie)
+		VALUES ('$name','$image',1,'$categorie')";
     return ejecutarConsulta($sql);
   }
 
-  public function update($id, $name, $image)
+  public function update($id, $name, $image, $categorie)
   {
     $sql = "UPDATE categories
-		SET id='$id',name='$name',image='$image' 
+		SET id='$id',
+    name='$name',
+    image='$image',
+    categorie='$categorie' 
 		WHERE id='$id'";
     return ejecutarConsulta($sql);
   }
@@ -36,14 +39,15 @@ class Categorie
 
   public function show($id)
   {
-    $sql = "SELECT id,name,image,status 
+    $sql = "SELECT id,name,categorie,image,status 
 		FROM categories
 		WHERE id='$id'";
     return ejecutarConsultaSimpleFila($sql);
   }
   public function index()
   {
-    $sql = "SELECT * FROM categories";
+    $sql = "SELECT * FROM categories 
+      ORDER BY id DESC";
     return ejecutarConsulta($sql);
   }
   public function indexall()

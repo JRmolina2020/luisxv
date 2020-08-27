@@ -1,0 +1,15 @@
+
+Options +followSymlinks
+RewriteEngine on
+RewriteRule ^brands/([0-9]+)$ brands.php?id=$1 [L]
+RewriteRule ^details/([0-9]+)$ details.php?id=$1 [L]
+RewriteRule ^productunit/([0-9]+)$ productunit.php?id=$1 [L]
+
+
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+</IfModule>

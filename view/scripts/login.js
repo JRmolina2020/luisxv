@@ -15,7 +15,7 @@ function validar_mensaje() {
       function (data) {
         data = JSON.parse(data);
         if (data != null) {
-          $(location).attr("href", "view/users.php");
+          $(location).attr("href", "view/products");
         } else {
           $("#alert_error").show();
           $("#alert_error").fadeIn(100);

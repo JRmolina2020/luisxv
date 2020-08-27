@@ -1,16 +1,15 @@
 <?php
-include 'navbar.php';
+include 'header.php';
 $rproduct = $index->product($_GET["id"]);
+if (empty($_GET["id"])) {
+  header("Location: index.php");
+  die();
+}
 ?>
 
-<body class="bg">
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="index.php">
-      <img src="public/images/logo.png" alt="logo" style="width:40px;">
-    </a>
-  </nav>
+<div class="section">
   <div class="container">
-    <div class="row mt-5">
+    <div class="row">
       <?php
       while ($row = $rproduct->fetch_object()) {
         $id = $row->id;
@@ -19,25 +18,33 @@ $rproduct = $index->product($_GET["id"]);
         $brand = $row->brand;
         $description = $row->description;
         $price = number_format($row->price, 0, '', '.');
-        $discount = number_format($row->discount, 0, '', '.');
+        $price_ac = $row->price * $row->discount;
+        $price_ac = $row->price - $price_ac;
+        $price_ac = number_format($price_ac, 0, '', '.');
         $image = $row->image;
       ?>
-      <div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
-        <div class="card text-center" style="width: 14rem;">
-          <img class="card-img-top" <?php echo "<img src='files/products/" . $image . "'width='330' height='250'>"; ?>
-            <div class="card-body">
-          <p><strong><?php echo $name ?></strong></p>
-          <p><span class="badge badge-pill badge-light"><?php echo $brand; ?></span></p>
-          <a href="<?php echo "detailsProduct.php?id=$id"; ?>" class="btn btn-danger btn-sm">Especificaciones</a>
+      <div class="col-lg-3 col-xs-6">
+        <div class="product">
+          <div class="product-img">
+            <div class="product-label">
+              <span class="new"><?php echo $brand ?></span>
+            </div>
+            <?php echo "<img width='330' height='310' src='/app/files/products/" . $image . "'/>"; ?>
+          </div>
+          <div class="product-body">
+            <h3 class="product-name">
+              <a href="<?php echo "/app/productunit/$id"; ?>"><?php echo $name ?></a>
+            </h3>
+            <h4 class="product-price">
+              $<?php echo $price_ac ?> <?php if ($row->discount > 0) { ?><del
+                class="product-old-price">$<?php echo $price ?><?php } ?></del>
+            </h4>
+            <a class="primary-btn cta-btn" href="<?php echo "/app/productunit/$id"; ?>">Ver más</a>
+          </div>
         </div>
       </div>
-      <div class="mt-3"></div>
+      <?php } ?>
     </div>
-    <?php } ?>
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+</div>
+<?php include 'footer.php' ?>

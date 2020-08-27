@@ -9,6 +9,7 @@ function init() {
 function limpiar() {
   $("#id").val("");
   $("#name").val("");
+  $("#categorie").val("");
   $("#imagenmuestra").attr("src", "");
   $("#imagenactual").val("");
   $("#form").bootstrapValidator("resetForm", true);
@@ -34,7 +35,9 @@ function index() {
     })
     .DataTable();
 }
-
+function mayus(e) {
+  e.value = e.value.toUpperCase();
+}
 function store(e) {
   $("#form")
     .bootstrapValidator({
@@ -45,12 +48,6 @@ function store(e) {
           validators: {
             notEmpty: {
               message: "El nombre  es obligatorio,no puede estar vacio.",
-            },
-
-            regexp: {
-              regexp: /^[a-zA-Z\s]+$/,
-              message:
-                "Ingrese un nombre correcto,no se aceptan valores númericos",
             },
 
             stringLength: {
@@ -105,6 +102,7 @@ function show(id) {
     data = JSON.parse(data);
     $("#id").val(data.id);
     $("#name").val(data.name);
+    $("#categorie").val(data.categorie);
     $("#imagenactual").val(data.image);
     $("#modal").modal("show");
   });

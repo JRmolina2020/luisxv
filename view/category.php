@@ -1,8 +1,5 @@
 <?php
 require 'header.php';
-if ($_SESSION['role'] != "1") {
-  header("Location: ../login.php");
-}
 ?>
 <style>
 .principal {
@@ -13,7 +10,7 @@ if ($_SESSION['role'] != "1") {
 <div class="content-wrapper">
   <section class="content">
     <div class="row">
-      <div class="col-lg-8 principal">
+      <div class="col-lg-10 principal">
         <div class="panel-body">
           <div class="nav-tabs-custom">
             <div class="tab-content no-padding">
@@ -37,7 +34,20 @@ if ($_SESSION['role'] != "1") {
                               <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group">
                                   <label class="control-label">Nombre</label>
-                                  <input type="text" class="form-control" name="name" id="name">
+                                  <input type="text" onkeyup="mayus(this);" class="form-control" name="name" id="name">
+                                </div>
+                              </div>
+                              <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                <div class="form-group">
+                                  <label class="control-label">Subcategoria</label>
+                                  <select class="form-control" name="categorie" id="categorie">
+                                    <option value="TECNOLOGIA">Tecnologia</option>
+                                    <option value="ELECTRODOMÉSTICOS">Electrodomésticos</option>
+                                    <option value="HOGAR">Hogar</option>
+                                    <option value="AUDIO">Audio</option>
+                                    <option value="BELLEZA">Belleza</option>
+                                    <option value="MUEBLES">Muebles</option>
+                                  </select>
                                 </div>
                               </div>
                               <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
@@ -61,6 +71,7 @@ if ($_SESSION['role'] != "1") {
                     <thead>
                       <th>Opciones</th>
                       <th>Nombre</th>
+                      <th>Subcategoria</th>
                       <th>Imagen</th>
                       <th>Estado</th>
                     </thead>

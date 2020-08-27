@@ -10,16 +10,24 @@ function init() {
   ) {
     $("#category_id").html(r);
   });
+  $.post("../controller/ProductControllers.php?op=selectBrands", function (r) {
+    $("#brand_id").html(r);
+  });
+}
+function mayus(e) {
+  e.value = e.value.toUpperCase();
 }
 function limpiar() {
   $("#id").val("");
   $("#name").val("");
   $("#price").val("");
-  $("#discount").val("");
+  $("#discount").val(0);
   $("#ref").val("");
   $("#description").val("");
-  $("#imagenmuestra").attr("src", "");
+  $("#specs").val("");
   $("#imagenactual").val("");
+  $("#imagenactual2").val("");
+  $("#imagenactual3").val("");
   $("#form").bootstrapValidator("resetForm", true);
 }
 function index() {
@@ -57,14 +65,6 @@ function store(e) {
             },
           },
         },
-        brand: {
-          message: "Marca invalida",
-          validators: {
-            notEmpty: {
-              message: "La marca es obligatoria",
-            },
-          },
-        },
         name: {
           message: "Nombre invalido",
           validators: {
@@ -73,6 +73,7 @@ function store(e) {
             },
           },
         },
+
         price: {
           message: "Precio invalido",
           validators: {
@@ -92,13 +93,32 @@ function store(e) {
             },
           },
         },
+        image2: {
+          validators: {
+            file: {
+              extension: "jpeg,jpg,png",
+              type: "image/jpeg,image/png",
+              maxSize: 2097152,
+              message: "Archivo denegado,Inserte una imagen valida",
+            },
+          },
+        },
+        image3: {
+          validators: {
+            file: {
+              extension: "jpeg,jpg,png",
+              type: "image/jpeg,image/png",
+              maxSize: 2097152,
+              message: "Archivo denegado,Inserte una imagen valida",
+            },
+          },
+        },
       },
     })
     .on("success.form.bv", function (e) {
       e.preventDefault();
       $("#btnsave").prop("disabled", false);
       var formData = new FormData($("#form")[0]);
-      tinymce.get("description").setContent("");
       $.ajax({
         url: "../controller/ProductControllers.php?op=store",
         type: "POST",
@@ -130,11 +150,15 @@ function show(id) {
     $("#category_id").val(data.category_id);
     $("#ref").val(data.ref);
     $("#name").val(data.name);
-    $("#brand").val(data.brand);
+    $("#brand_id").val(data.brand_id);
     $("#price").val(data.price);
     $("#discount").val(data.discount);
     $("#description").val(data.description);
+    $("#specs").val(data.specs);
+    $("#embed").val(data.embed);
     $("#imagenactual").val(data.image);
+    $("#imagenactual2").val(data.image2);
+    $("#imagenactual3").val(data.image3);
     $("#modal").modal("show");
   });
 }

@@ -1,8 +1,5 @@
 <?php
 require 'header.php';
-if ($_SESSION['role'] != "1") {
-  header("Location: ../login.php");
-}
 ?>
 <style>
 .principal {
@@ -13,7 +10,7 @@ if ($_SESSION['role'] != "1") {
 <div class="content-wrapper">
   <section class="content">
     <div class="row">
-      <div class="col-lg-10 principal">
+      <div class="col-lg-12 principal">
         <div class="panel-body">
           <div class="nav-tabs-custom">
             <div class="tab-content no-padding">
@@ -44,13 +41,13 @@ if ($_SESSION['role'] != "1") {
                               <div class="col-lg-4 col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group">
                                   <label class="control-label">Referencia</label>
-                                  <input type="text" class="form-control" name="ref" id="ref">
+                                  <input type="text" onkeyup="mayus(this);" class="form-control" name="ref" id="ref">
                                 </div>
                               </div>
                               <div class="col-lg-4 col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group">
                                   <label class="control-label">Nombre</label>
-                                  <input type="text" class="form-control" name="name" id="name">
+                                  <input type="text" onkeyup="mayus(this);" class="form-control" name="name" id="name">
                                 </div>
                               </div>
                             </div>
@@ -58,7 +55,8 @@ if ($_SESSION['role'] != "1") {
                               <div class="col-lg-4 col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group">
                                   <label class="control-label">Marca</label>
-                                  <input type="text" class="form-control" name="brand" id="brand">
+                                  <select id="brand_id" name='brand_id' class="form-control">
+                                  </select>
                                 </div>
                               </div>
                               <div class="col-lg-4 col-md-12 col-xs-12 col-sm-12">
@@ -77,20 +75,52 @@ if ($_SESSION['role'] != "1") {
                             <div class="row">
                               <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group">
-                                  <label class="control-label">Especificaciones</label>
+                                  <label class="control-label">Especificaciones del producto</label>
+                                  <textarea class="form-control" rows="5" name="specs" id="specs"></textarea>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                <div class="form-group">
+                                  <label class="control-label">Descripción del producto</label>
                                   <textarea class="form-control" rows="5" name="description"
                                     id="description"></textarea>
                                 </div>
                               </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-lg-4 col-md-12 col-xs-12 col-sm-12">
+                                <div class="form-group">
+                                  <label class="control-label">Imagen 1</label>
+                                  <input type="file" class="form-control" name="image" id="image">
+                                </div>
+                              </div>
+                              <div class="col-lg-4 col-md-12 col-xs-12 col-sm-12">
+                                <div class="form-group">
+                                  <label class="control-label">Imagen 2</label>
+                                  <input type="file" class="form-control" name="image2" id="image2">
+                                </div>
+                              </div>
+                              <div class="col-lg-4 col-md-12 col-xs-12 col-sm-12">
+                                <div class="form-group">
+                                  <label class="control-label">Imagen 3</label>
+                                  <input type="file" class="form-control" name="image3" id="image3">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
                               <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group">
-                                  <label class="control-label">Imagen del producto</label>
-                                  <input type="file" class="form-control" name="image" id="image">
+                                  <label class="control-label">Video</label>
+                                  <input type="text" class="form-control" name="embed" id="embed">
                                 </div>
                               </div>
                             </div>
                         </div>
                         <input type="hidden" name="imagenactual" id="imagenactual">
+                        <input type="hidden" name="imagenactual2" id="imagenactual2">
+                        <input type="hidden" name="imagenactual3" id="imagenactual3">
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
                           <button type="submit" class="btn btn-success pull-right">Guardar</button>
@@ -107,8 +137,10 @@ if ($_SESSION['role'] != "1") {
                       <th>Nombre</th>
                       <th>Marca</th>
                       <th>Precio</th>
-                      <td>Descuento</td>
-                      <th>Imagen</th>
+                      <th>Descuento</th>
+                      <th>Subcategoria</th>
+                      <th>Imagen1</th>
+                      <th>Imagen2</th>
                       <th>Estado</th>
                     </thead>
                     <tbody>
